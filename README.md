@@ -13,7 +13,7 @@
 
 <strong>In progress</strong>
 
-> Agenda
+> Contact book with login
 
 ### Built With
 

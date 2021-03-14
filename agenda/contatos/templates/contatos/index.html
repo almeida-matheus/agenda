@@ -1,52 +1,58 @@
 {% extends 'base.html' %}
 
 {%block conteudo%}
-    <h1 class="mt-5">Minha agenda</h1>
+<h1 class="mt-5">Minha agenda</h1>
 
-    <table class="table">
-      <thead>
+<table class="table">
+    <thead>
         <tr>
-          <th>ID</th>
-          <th>Nome</th>
-          <th>Sobrenome</th>
-          <th>Telefone</th>
-          <th>Categoria</th>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Sobrenome</th>
+            <th>Telefone</th>
+            <th>Categoria</th>
         </tr>
-      </thead>
-      <tbody>
+    </thead>
+    <tbody>
 
 
         {% for contato in contatos %}
-          <tr>
+        <!-- {% if contato.mostrar %} -->
+        <tr>
             <td>{{ contato.id }}</td>
             <td>
-              <a href="{% url 'ver_contato' contato.id %}">{{ contato.nome }}</a>
+                <a href="{% url 'ver_contato' contato.id %}">{{ contato.nome }}</a>
             </td>
             <td>{{ contato.sobrenome }}</td>
             <td>{{ contato.telefone }}</td>
             <td>{{ contato.categoria }}</td>
-          </tr>
+        </tr>
+        <!-- {% endif %} -->
         {% endfor %}
 
 
 
-      </tbody>
-    </table>
+    </tbody>
+</table>
 
+<!--PAGINATION-->
 <nav aria-label="Page navigation example">
-  <ul class="pagination">
-    {% for pagina in contatos.paginator.page_range %}
-      {% if contatos.number == pagina %}
+    <ul class="pagination">
+        <!--contatos = paginator.get_page(page)-->
+        <!--pra cada pagina nas paginas totais cria-->
+        {% for pagina in contatos.paginator.page_range %}
+        <!-- contatos.numer = numero atual da pagina-->
+        {% if contatos.number == pagina %}
         <li class="page-item active">
-          <a class="page-link" href="?p={{ pagina }}&termo={{ request.GET.termo }}">{{pagina}}</a>
+            <a class="page-link" href="?p={{ pagina }}&termo={{ request.GET.termo }}">{{pagina}}</a>
         </li>
-      {% else %}
+        {% else %}
         <li class="page-item">
-          <a class="page-link" href="?p={{ pagina }}&termo={{ request.GET.termo }}">{{pagina}}</a>
+            <a class="page-link" href="?p={{ pagina }}&termo={{ request.GET.termo }}">{{pagina}}</a>
         </li>
-      {% endif %}
-    {% endfor %}
-  </ul>
+        {% endif %}
+        {% endfor %}
+    </ul>
 </nav>
 
 {%endblock%}

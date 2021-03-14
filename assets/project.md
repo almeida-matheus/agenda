@@ -1,10 +1,9 @@
 ## archives
 
-- agenda
-> the project
+- **agenda**: the project
 
-- contantos
-> app
+- **contantos**: app da lista e contatos da agenda
 
-- template
-> html base, arquivos estáticos
+- **accounts**: app do sistema de login
+
+- **template**: html base, arquivos estáticos

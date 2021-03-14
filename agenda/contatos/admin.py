@@ -13,6 +13,7 @@ class ContatoAdmin(admin.ModelAdmin):
     list_per_page = 10
     # * campo pra pesquisar tal coluna
     search_fields = ('nome', 'sobrenome', 'telefone')
+    #editar da propria lista sem ter q abrir uma url/<id>
     list_editable = ('telefone', 'mostrar')
 
 

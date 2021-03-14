@@ -3,44 +3,48 @@
 <html lang="pt">
 
 <head>
-  <title>Agenda</title>
-  {% include 'parciais/_head.html' %}
+    <title>{%block titulo%}{%endblock%}Agenda</title>
+
+    {% include 'parciais/_head.html' %}
 
 </head>
 
 <body>
 
-  {% include 'parciais/_nav.html' %}
-  <!-- Page Content -->
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
+    {% include 'parciais/_nav.html' %}
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
 
-        {% if 'accounts' not in request.path %}
-        <br><br>
-        <form method="get" action="{% url 'busca' %}">
-          <div class="form-group row">
-            <div class="col-12">
-              <input class="form-control"
-                     type="search" value="{{ request.GET.termo }}"
-                     id="search-input"
-                     placeholder="Digite sua pesquisa"
-                     name="termo">
-              {% include 'parciais/_messages.html' %}
+                <!--se não tiver accounts na url aparece a busca-->
+                {% if 'accounts' not in request.path %}
+                <br><br>
+                <form method="get" action="{% url 'busca' %}">
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <!--name="termo" => url/?termo=<valor>-->
+                            <!--value recebe o valor da url/?termo=<valor>-->
+                            <input class="form-control" type="search" 
+                            id="search-input"
+                            placeholder="Digite sua pesquisa" 
+                            value="{{ request.GET.termo }}" 
+                            name="termo">
+                            {% include 'parciais/_messages.html' %}
+                        </div>
+                    </div>
+                </form>
+                {% endif %}
+
+
+                {%block conteudo%} {%endblock%}
             </div>
-          </div>
-        </form>
-        {% endif %}
-
-
-        {%block conteudo%} {%endblock%}
-      </div>
+        </div>
     </div>
-  </div>
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="{% static 'vendor/jquery/jquery.slim.min.js'%}"></script>
-  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'vendor/jquery/jquery.slim.min.js'%}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
 
 </body>
 

@@ -124,7 +124,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'templates/static')
 ]
 
-# Mensagens
+# Mensagens with bootstrap
 from django.contrib.messages import constants
 
 MESSAGE_TAGS = {
@@ -135,5 +135,6 @@ MESSAGE_TAGS = {
     constants.INFO: 'alert-info',
 }
 
+# Fotos
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = 'media/'
