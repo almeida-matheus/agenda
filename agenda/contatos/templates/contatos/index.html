@@ -1,39 +1,40 @@
 {% extends 'base.html' %}
 
 {%block conteudo%}
-<h1 class="mt-5">Minha agenda</h1>
+<h1 class="mt-5">Contatos</h1>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Sobrenome</th>
-            <th>Telefone</th>
-            <th>Categoria</th>
-        </tr>
-    </thead>
-    <tbody>
+<!--Table-->
+<section id="table-overflow">
+    <table class="content-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Sobrenome</th>
+                <th>Celular</th>
+                <th>Categoria</th>
+            </tr>
+        </thead>
+        <tbody>
 
+            {% for contato in contatos %}
+            <!-- {% if contato.mostrar %} não precisa mais por causa do filter-->
+            <tr>
+                <td>{{ contato.id }}</td>
+                <td>
+                    <a href="{% url 'ver_contato' contato.id %}">{{ contato.nome }}</a>
+                </td>
+                <td>{{ contato.sobrenome }}</td>
+                <td>{{ contato.telefone }}</td>
+                <td>{{ contato.categoria }}</td>
+            </tr>
+            <!-- {% endif %} -->
+            {% endfor %}
 
-        {% for contato in contatos %}
-        <!-- {% if contato.mostrar %} -->
-        <tr>
-            <td>{{ contato.id }}</td>
-            <td>
-                <a href="{% url 'ver_contato' contato.id %}">{{ contato.nome }}</a>
-            </td>
-            <td>{{ contato.sobrenome }}</td>
-            <td>{{ contato.telefone }}</td>
-            <td>{{ contato.categoria }}</td>
-        </tr>
-        <!-- {% endif %} -->
-        {% endfor %}
+        </tbody>
+    </table>
+</section>
 
-
-
-    </tbody>
-</table>
 
 <!--PAGINATION-->
 <nav aria-label="Page navigation example">
